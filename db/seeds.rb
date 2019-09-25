@@ -5,27 +5,26 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
-
-10.times do
-  products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
-  Product.create(
-    :name => products.sample, 
-    :price => Faker::Number.between(from: 1,to: 1500), 
-    :description => Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4),
-    :inventory => Faker::Number.between(from: 1, to: 20)
-  )
-
-end
-5.times do
-  Customer.create(:name => Faker::Name.name)
-end
-
-5.times do
-  Invoice.create
-end
-10.times do
-  order = Order.create(:customer_id => Customer.all.collect(&:id).sample, :invoice_id => Invoice.all.collect(&:id).sample)
-  order.products << Product.find(Product.all.collect(&:id).sample)
-end
-
+# products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
+#
+# 10.times do
+#   products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
+#   Product.create(
+#     :name => products.sample,
+#     :price => Faker::Number.between(from: 1, to: 1500),
+#     :description => Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4),
+#     :inventory => Faker::Number.between(from: 1, to: 20)
+#   )
+#
+# end
+# 5.times do
+#   Customer.create(:name => Faker::Name.name)
+# end
+# 
+# 5.times do
+#   Invoice.create
+# end
+# 10.times do
+#   order = Order.create(:customer_id => Customer.all.collect(&:id).sample, :invoice_id => Invoice.all.collect(&:id).sample)
+#   order.products << Product.find(Product.all.collect(&:id).sample)
+# end
