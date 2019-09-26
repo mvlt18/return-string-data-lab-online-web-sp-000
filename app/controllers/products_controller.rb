@@ -5,9 +5,6 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def show
-  end
-
   def new
     @product = Product.new
   end
@@ -15,28 +12,26 @@ class ProductsController < ApplicationController
   def create
     @product = Product.create(product_params)
     @product.save
-    redirect_to product_path(@product)
+    redirect_to products_path
   end
 
-  def edit
+  def description
+    @product = Product.find(params[:id])
+    render plain: @product.description
   end
 
-  def update
-    @product.update(product_params)
-    redirect_to product_path(@product)
-  end
-
-  def body
-    product = Product.find(params[:id])
-    render plain: product.description
+  def inventory
+    @product = Product.find(params[:id])
+    render plain: @product.inventory > 0 ? true : false
   end
 
   private
+
   def set_product
-    @product = Post.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:title, :description)
+    params.require(:product).permit(:name, :description, :inventory, :price)
   end
 end
